@@ -35,7 +35,10 @@ field_values = append(field_values, c(clean(val_table$NULL.V4[2]), clean(val_tab
 
 #get improvement values for the given property
 imp_table = as.data.frame(tables[6], stringsAsFactors = F)
-field_values = append(field_values, c(imp_table$NULL.V1[2], try(clean(imp_table$NULL.V2[2]), silent=T), imp_table$NULL.V3[2], imp_table$NULL.V4[2], try(clean(imp_table$NULL.V5[2]), silent=T), try(clean(imp_table$NULL.V6[2]), silent=T), imp_table$NULL.V7[2], imp_table$NULL.V1[4], imp_table$NULL.V2[4], imp_table$NULL.V3[4], imp_table$NULL.V6[4], try(clean(imp_table$NULL.V7[4]), silent=T)))
+if (names(imp_table[1]) == 'NULL.V1')
+  field_values = append(field_values, c(imp_table$NULL.V1[2], try(clean(imp_table$NULL.V2[2]), silent=T), imp_table$NULL.V3[2], imp_table$NULL.V4[2], try(clean(imp_table$NULL.V5[2]), silent=T), try(clean(imp_table$NULL.V6[2]), silent=T), imp_table$NULL.V7[2], imp_table$NULL.V1[4], imp_table$NULL.V2[4], imp_table$NULL.V3[4], imp_table$NULL.V6[4], try(clean(imp_table$NULL.V7[4]), silent=T)))
+else 
+  field_values = append(field_values, c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
 
 #add the completed record to the prop_info data frame
 prop_info = rbind(prop_info, field_values)
